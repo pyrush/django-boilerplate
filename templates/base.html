@@ -19,9 +19,9 @@
 
   {# Page-specific styles #}
   {% autoescape off %}
-    {% block page_css %}
+    {% block on_page_css %}
     
-    {% endblock page_css %}
+    {% endblock on_page_css %}
   {% endautoescape %}
 
   {% block extra_head %}
@@ -31,15 +31,31 @@
   <title>{% block page_title %}Home{% endblock page_title %}</title>
 </head>
 <body class="{% block body_class %}{% endblock %}">
+
+{% include "partials/_nav.html" %}
+
+  <div class="container mt-4">  
+    {% if messages %}
+      {% for message in messages %}
+        <div class="message">
+          <div class="alert alert-{{ message.tags }} message" id="djangoMessage">
+            {{ message }}
+            <button type="button" class="close" aria-label="Close" data-dismiss="message">
+              <span aria-hidden="true" id="messageDialogCloseBtn">&times;</span></button>       
+          </div>
+        </div>    
+      {% endfor %}
+    {% endif %}
 <div class="container">
-  {% block leftbar %}
+  <div class="row">
+    {% block leftbar %}
 
-  {% endblock leftbar %}
+    {% endblock leftbar %}
 
-  {% block content %}
-      {# Page content will go here #}
-  {% endblock content %}
-
+    {% block content %}
+        {# Page content will go here #}
+    {% endblock content %}
+  </div>
   {# Modal HTML #}
   {% block modals %}
   {% endblock modals %}
@@ -56,9 +72,11 @@
 {% block shared_data %}
 
 {% endblock shared_data %}
+
 {% block on_page_ajax %}
 
 {% endblock on_page_ajax %}
+
 {% autoescape off %}
   {% block on_page_js %}
   {% endblock on_page_js %}

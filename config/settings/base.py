@@ -67,11 +67,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #### Project Apps ####
-    'app1',
+    'image',
 
 
     #### Third Party Apps #####
-
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -164,6 +164,7 @@ LOCALE_PATHS = [
     BASE_DIR / "locale",
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
 
