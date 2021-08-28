@@ -5,64 +5,63 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   {% block page_meta %}
-  {% endblock %}
+  {% endblock page_meta %}
 
   {# Vendor styles #}
   {% block vendor_css %}
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/vendor/bootstrap.min.css' %}" />
-  {% endblock %}
+  {% endblock vendor_css %}
 
   {# Global styles #}
   {% block site_css %}
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'css/styles/style.css' %}" />
-  {% endblock %}
+  {% endblock site_css %}
 
   {# Page-specific styles #}
   {% autoescape off %}
-    {% block page_css %}{% endblock %}
+    {% block page_css %}
+    
+    {% endblock page_css %}
   {% endautoescape %}
 
   {% block extra_head %}
     {# Extra header stuff (scripts, styles, metadata, etc) #}
-  {% endblock %}
+  {% endblock extra_head %}
 
-  <title>{% block page_title %}Home{% endblock %}</title>
+  <title>{% block page_title %}Home{% endblock page_title %}</title>
 </head>
 <body class="{% block body_class %}{% endblock %}">
-{% block content %}
-    {# Page content will go here #}
-{% endblock %}
+<div class="container">
+  {% block leftbar %}
 
-{# Modal HTML #}
-{% block modals %}
-{% endblock %}
+  {% endblock leftbar %}
 
-{# Vendor javascript #}
+  {% block content %}
+      {# Page content will go here #}
+  {% endblock content %}
+
+  {# Modal HTML #}
+  {% block modals %}
+  {% endblock modals %}
+</div>
 {% block vendor_js %}
-  <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
-{% endblock %}
+  {% include 'partials/_scripts.html' %}  
+{% endblock vendor_js %}
 
-{# Global javascript #}
 {% block site_js %}
-  {% include 'partials/_scripts.js' %}
   <script src="{% static 'js/main.js' %}"></script>
-{% endblock %}
+{% endblock site_js %}
 
 {# Shared data for javascript #}
-<script type="text/javascript">
-  window._sharedData = {
-    {% autoescape off %}
-      {% block shared_data %}
-        'DEBUG': {% if debug %}true{% else %}false{% endif %},
-      {% endblock %}
-    {% endautoescape %}
-  }
-</script>
+{% block shared_data %}
 
-{# Page javascript #}
+{% endblock shared_data %}
+{% block on_page_ajax %}
+
+{% endblock on_page_ajax %}
 {% autoescape off %}
-  {% block page_js %}
-  {% endblock %}
+  {% block on_page_js %}
+  {% endblock on_page_js %}
 {% endautoescape %}
 </body>
 </html>
