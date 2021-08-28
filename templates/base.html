@@ -44,12 +44,10 @@
   {% block modals %}
   {% endblock modals %}
 </div>
-{# Vendor javascript #}
 {% block vendor_js %}
   {% include 'partials/_scripts.html' %}  
 {% endblock vendor_js %}
 
-{# Global javascript #}
 {% block site_js %}
   <script src="{% static 'js/main.js' %}"></script>
 {% endblock site_js %}
@@ -61,7 +59,6 @@
 {% block on_page_ajax %}
 
 {% endblock on_page_ajax %}
-{# Page javascript #}
 {% autoescape off %}
   {% block on_page_js %}
   {% endblock on_page_js %}
