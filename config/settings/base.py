@@ -68,6 +68,7 @@ INSTALLED_APPS = [
 
     #### Project Apps ####
     'image',
+    'todo',
 
 
     #### Third Party Apps #####

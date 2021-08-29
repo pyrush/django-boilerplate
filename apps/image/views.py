@@ -6,16 +6,21 @@ from django.contrib import messages
 from django.http import JsonResponse
 
 from .models import ImageModel
+from .forms import ImageUploadForm
 
 
-class UploadImage(CreateView):
-    model = ImageModel
-    fields = ['name', 'image', 'description']
+class UploadImage(View):
 
-    def form_valid(self, form):
-        name = form.cleaned_data['name']
-        messages.success(self.request, f"Image with {name} successfully saved")
-        return super().form_valid(form)
+    def get(self, request, *args, **kwargs):
+        form = ImageUploadForm()
+        context = {}
+        context["form"] = form
+        return render(request, 'image/imagemodel_form.html', context)
+
+    # def form_valid(self, form):
+    #     name = form.cleaned_data['name']
+    #     messages.success(self.request, f"Image with {name} successfully saved")
+    #     return super().form_valid(form)
 
     def post(self, request, *args, **kwargs):
-        return JsonResponse({"success": "success"})
+        return render(request, 'image/imagemodel_form.html')

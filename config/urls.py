@@ -21,6 +21,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('image/', include("image.urls", namespace="image")),
+    path('todo/', include("todo.urls", namespace="todo")),
 ]
 
 if settings.DEBUG:
