@@ -7,6 +7,11 @@ from django.http import JsonResponse
 
 from .models import ImageModel
 from .forms import ImageUploadForm
+from .tasks import test_func
+
+def test(request):
+    
+    return HttpResponse("Done")
 
 
 class UploadImage(View):
